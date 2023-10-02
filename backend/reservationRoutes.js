@@ -4,7 +4,6 @@ const router = express.Router();
 // Middleware pour la validation des données
 //const validateReservationData = require("../middlewares/validateReservationData");
 
-// Exemple de structure de données temporaire pour les réservations
 const reservations = [];
 
 // Route pour créer une réservation
@@ -18,7 +17,7 @@ router.post("/reservations", (req, res) => {
   }
 
   const reservation = {
-    id: reservations.length + 1, // Générez un ID unique
+    id: reservations.length + 1,
     name,
     phone,
     date,
@@ -32,12 +31,10 @@ router.post("/reservations", (req, res) => {
     .json({ message: "Réservation créée avec succès.", reservation });
 });
 
-// Route pour obtenir toutes les réservations
 router.get("/reservations", (req, res) => {
   return res.status(200).json({ reservations });
 });
 
-// Route pour obtenir une réservation par ID
 router.get("/reservations/:id", (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -50,7 +47,6 @@ router.get("/reservations/:id", (req, res) => {
   return res.status(200).json({ reservation });
 });
 
-// Route pour mettre à jour une réservation par ID
 router.put("/reservations/:id", (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -73,7 +69,6 @@ router.put("/reservations/:id", (req, res) => {
   });
 });
 
-// Route pour supprimer une réservation par ID
 router.delete("/reservations/:id", (req, res) => {
   const id = parseInt(req.params.id);
 

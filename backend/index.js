@@ -17,7 +17,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-// Connectez-vous à la base de données MySQL en utilisant les variables d'environnement
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -25,7 +24,6 @@ const connection = mysql.createConnection({
   database: process.env.DB_DATABASE,
 });
 
-// Vérifier la connexion à la base de données
 connection.connect((err) => {
   if (err) {
     console.error("Erreur de connexion à la base de données :", err);
@@ -34,12 +32,10 @@ connection.connect((err) => {
   console.log("Connecté à la base de données MySQL");
 });
 
-// Utilisez Axios pour effectuer des requêtes HTTP vers votre backend
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080", // Remplacez par l'URL de votre backend
+  baseURL: "http://localhost:8080",
 });
 
-// Exemple d'utilisation d'Axios pour effectuer une requête POST vers votre backend
 app.post("/api/reservations", async (req, res) => {
   try {
     const response = await axiosInstance.post("/api/reservations", req.body);
